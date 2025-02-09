@@ -11,6 +11,7 @@ sudo docker run -d --name ${app_name} \
   -p ${minecraft_server_port}:${minecraft_server_port} \
   -e EULA=TRUE \
   -e TYPE=${minecraft_server_type} \
+  -e MEMORY=${minecraft_memory_G}G \
   -e MAX_PLAYERS=${minecraft_max_players} \
   -e MOTD="${minecraft_motd}" \
   -e TZ="${minecraft_timezone}" \
@@ -30,6 +31,7 @@ sudo docker run -d --name ${app_name} \
   -p ${minecraft_server_port}:${minecraft_server_port} \
   -e EULA=TRUE \
   -e TYPE=${minecraft_server_type} \
+  -e MEMORY=${minecraft_memory_G}G \
   -e MAX_PLAYERS=${minecraft_max_players} \
   -e MOTD="${minecraft_motd}" \
   -e TZ="${minecraft_timezone}" \

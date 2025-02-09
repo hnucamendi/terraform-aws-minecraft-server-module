@@ -9,6 +9,7 @@ resource "aws_instance" "main" {
     app_name                            = var.app_name
     minecraft_server_port               = var.minecraft_server_port
     minecraft_server_type               = var.minecraft_server_type
+    minecraft_memory_G                  = var.minecraft_memory_G
     minecraft_max_players               = var.minecraft_max_players
     minecraft_motd                      = var.minecraft_motd
     minecraft_timezone                  = var.minecraft_timezone
