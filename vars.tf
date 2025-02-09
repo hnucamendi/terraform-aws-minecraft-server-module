@@ -1,5 +1,5 @@
 variable "app_name" {
-  type = string
+  type      = string
   sensitive = false
 }
 
@@ -15,81 +15,85 @@ variable "ami" {
 }
 
 variable "instance_type" {
-  type = string
+  type      = string
   sensitive = false
-}
-
-variable "isModpack" {
-  type = bool
-  sensitive = false
-  default = false
 }
 
 variable "minecraft_server_port" {
-  type = number
+  type      = number
   sensitive = false
-  default = 25565
+  default   = 25565
 }
 
 variable "minecraft_server_type" {
-  type = string
+  type      = string
   sensitive = false
-  default = "Vanilla"
+  default   = "Vanilla"
 }
 
 variable "ftb_modpack_id" {
-  type = number
+  type      = number
   sensitive = false
-  default = 0
+  default   = 0
 }
 
-variable "ftb_modpack_version" {
-  type = number
+variable "ftb_modpack_version_id" {
+  type      = number
   sensitive = false
-  default = 0
+  default   = 0
 }
 
 variable "minecraft_memory_G" {
-  type = number
+  type      = number
   sensitive = false
 }
 
 variable "minecraft_timezone" {
-  type = string
-  default = "America/New_York"
+  type      = string
+  sensitive = false
+  default   = "America/New_York"
 }
 
 variable "minecraft_max_players" {
-  type = number
+  type      = number
   sensitive = false
+  default   = 20
+}
+
+variable "minecraft_gamemode" {
+  type      = number
+  sensitive = false
+  default   = 1
 }
 
 variable "minecraft_motd" {
-  type = string
+  type      = string
   sensitive = false
-  default = "Minecraft Server"
+  default   = "Minecraft Server"
 }
 
 variable "minecraft_difficulty_level" {
-  type = number
+  type      = number
   sensitive = false
-  default = 1
+  default   = 1
 }
 
 variable "minecraft_ops_list" {
-  type = string
+  type      = string
   sensitive = false
+  default   = ""
 }
 
 variable "minecraft_rcon_cmds_last_disconnect" {
-  type = string
+  type      = string
   sensitive = false
+  default   = ""
 }
 
 variable "public_key_pair_path" {
-  type = string
+  type      = string
   sensitive = false
-  default = "~/.ssh/id_ed25519.pub"
+  default   = "~/.ssh/id_ed25519.pub"
 }
 
 variable "security_group_ingress_rules" {
@@ -101,6 +105,16 @@ variable "security_group_ingress_rules" {
     protocol    = string
     cidr_blocks = set(string)
   }))
+
+  default = {
+    "allow-all-mc" = {
+      description = "Allow all ingress to default minecraft port"
+      from_port   = var.mincraft_server_port
+      to_port     = var.minecraft_server_port
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
 }
 
 variable "security_group_egress_rules" {

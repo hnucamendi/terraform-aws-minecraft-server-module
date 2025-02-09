@@ -5,24 +5,24 @@ resource "aws_instance" "main" {
   key_name               = aws_key_pair.main.key_name
   vpc_security_group_ids = [aws_security_group.main.id]
   iam_instance_profile   = aws_iam_instance_profile.main.name
-  user_data              = templatefile("${path.module}/minecraft-userdata.sh.tftpl", {
-    app_name                     = var.app_name
-    minecraft_server_port        = var.minecraft_server_port
-    minecraft_server_type        = var.minecraft_server_type
-    minecraft_memory_G           = var.minecraft_memory_G
-    minecraft_max_players        = var.minecraft_max_players
-    minecraft_motd               = var.minecraft_motd
-    minecraft_timezone           = var.minecraft_timezone
-    minecraft_difficulty_level   = var.minecraft_difficulty_level
-    minecraft_ops_list           = var.minecraft_ops_list
+  user_data = templatefile("${path.module}/minecraft-userdata.sh.tftpl", {
+    app_name                            = var.app_name
+    minecraft_server_port               = var.minecraft_server_port
+    minecraft_server_type               = var.minecraft_server_type
+    minecraft_memory_G                  = var.minecraft_memory_G
+    minecraft_max_players               = var.minecraft_max_players
+    minecraft_motd                      = var.minecraft_motd
+    minecraft_timezone                  = var.minecraft_timezone
+    minecraft_difficulty_level          = var.minecraft_difficulty_level
+    minecraft_gamemode                  = var.minecraft_gamemode
+    minecraft_ops_list                  = var.minecraft_ops_list
     minecraft_rcon_cmds_last_disconnect = var.minecraft_rcon_cmds_last_disconnect
-    isModpack                    = var.isModpack
-    ftb_modpack_id               = var.ftb_modpack_id
-    ftb_modpack_version          = var.ftb_modpack_version
+    ftb_modpack_id                      = var.ftb_modpack_id
+    ftb_modpack_version_id              = var.ftb_modpack_version_id
   })
 
   tags = {
-    Name = "Minecraft-Server"
+    Name = "${var.app_name} Minecraft-Server"
   }
 }
 
@@ -42,24 +42,24 @@ resource "aws_security_group" "main" {
 resource "aws_security_group_rule" "ingress" {
   for_each          = var.security_group_ingress_rules
   security_group_id = aws_security_group.main.id
-  type             = "ingress"
-  description      = each.value.description
-  from_port        = each.value.from_port
-  to_port          = each.value.to_port
-  protocol         = each.value.protocol
-  cidr_blocks      = each.value.cidr_blocks
+  type              = "ingress"
+  description       = each.value.description
+  from_port         = each.value.from_port
+  to_port           = each.value.to_port
+  protocol          = each.value.protocol
+  cidr_blocks       = each.value.cidr_blocks
 }
 
 
 resource "aws_security_group_rule" "egress" {
   for_each          = var.security_group_egress_rules
   security_group_id = aws_security_group.main.id
-  type             = "egress"
-  description      = each.value.description
-  from_port        = each.value.from_port
-  to_port          = each.value.to_port
-  protocol         = each.value.protocol
-  cidr_blocks      = each.value.cidr_blocks
+  type              = "egress"
+  description       = each.value.description
+  from_port         = each.value.from_port
+  to_port           = each.value.to_port
+  protocol          = each.value.protocol
+  cidr_blocks       = each.value.cidr_blocks
 }
 
 ## IAM Config ## 
