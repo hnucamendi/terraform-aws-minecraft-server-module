@@ -51,7 +51,7 @@ resource "aws_security_group_rule" "ingress" {
 }
 
 
-resource "aws_security_group_rule" "ingress" {
+resource "aws_security_group_rule" "egress" {
   for_each          = var.security_group_egress_rules
   security_group_id = aws_security_group.main.id
   type             = "egress"
