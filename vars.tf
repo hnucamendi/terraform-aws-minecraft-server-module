@@ -117,16 +117,6 @@ variable "security_group_ingress_rules" {
     protocol    = string
     cidr_blocks = set(string)
   }))
-
-  default = {
-    "allow-all-mc" = {
-      description = "Allow all ingress to default minecraft port"
-      from_port   = var.mincraft_server_port
-      to_port     = var.minecraft_server_port
-      protocol    = "-1"
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-  }
 }
 
 variable "security_group_egress_rules" {
