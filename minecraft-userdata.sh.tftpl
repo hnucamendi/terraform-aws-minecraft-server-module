@@ -22,13 +22,6 @@ sudo docker run -d --name ${app_name} \
   itzg/minecraft-server
 
 %{ if isModpack }
-sudo docker exec ${app_name} \
-%{ if ftb_modpack_id != 0 }
-  -e FTB_MODPACK_ID=${ftb_modpack_id} \
+sudo docker exec ${app_name} %{ if ftb_modpack_id != 0 } -e FTB_MODPACK_ID=${ftb_modpack_id} %{ endif }
+%{ if ftb_modpack_version != 0 } -e FTB_MODPACK_VERSION_ID=${ftb_modpack_version} %{ endif }
 %{ endif }
-
-%{ if ftb_modpack_version != 0 }
-  -e FTB_MODPACK_VERSION_ID=${ftb_modpack_version} \
-%{ endif }
-%{ endif }
-
