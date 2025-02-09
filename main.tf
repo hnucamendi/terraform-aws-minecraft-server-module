@@ -15,6 +15,8 @@ resource "aws_instance" "main" {
     minecraft_timezone                  = var.minecraft_timezone
     minecraft_difficulty_level          = var.minecraft_difficulty_level
     minecraft_gamemode                  = var.minecraft_gamemode
+    minecraft_world_name                = var.minecraft_world_name
+    minecraft_world_seed                = var.minecraft_world_seed
     minecraft_ops_list                  = var.minecraft_ops_list
     minecraft_rcon_cmds_last_disconnect = var.minecraft_rcon_cmds_last_disconnect
     ftb_modpack_id                      = var.ftb_modpack_id

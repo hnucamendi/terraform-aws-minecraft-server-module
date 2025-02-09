@@ -60,6 +60,18 @@ variable "minecraft_max_players" {
   default   = 20
 }
 
+variable "minecraft_world_name" {
+  type      = string
+  sensitive = false
+  default   = "world"
+}
+
+variable "minecraft_world_seed" {
+  type      = string
+  sensitive = false
+  default   = ""
+}
+
 variable "minecraft_gamemode" {
   type      = number
   sensitive = false
