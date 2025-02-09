@@ -43,11 +43,6 @@ variable "ftb_modpack_version_id" {
   default   = 0
 }
 
-variable "minecraft_memory_G" {
-  type      = number
-  sensitive = false
-}
-
 variable "minecraft_timezone" {
   type      = string
   sensitive = false
