@@ -3,6 +3,12 @@ variable "app_name" {
   sensitive = false
 }
 
+variable "additional_user_data" {
+  type      = string
+  sensitive = false
+  default = ""
+}
+
 variable "vpc_id" {
   type      = string
   sensitive = true

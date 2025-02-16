@@ -5,7 +5,7 @@ resource "aws_instance" "main" {
   key_name               = aws_key_pair.main.key_name
   vpc_security_group_ids = [aws_security_group.main.id]
   iam_instance_profile   = aws_iam_instance_profile.main.name
-  user_data = templatefile("${path.module}/minecraft-userdata.sh.tftpl", {
+  user_data = "${templatefile("${path.module}/minecraft-userdata.sh.tftpl", {
     app_name                            = var.app_name
     minecraft_server_port               = var.minecraft_server_port
     minecraft_server_type               = var.minecraft_server_type
@@ -21,7 +21,7 @@ resource "aws_instance" "main" {
     minecraft_rcon_cmds_last_disconnect = var.minecraft_rcon_cmds_last_disconnect
     ftb_modpack_id                      = var.ftb_modpack_id
     ftb_modpack_version_id              = var.ftb_modpack_version_id
-  })
+  })}\n${var.additional_user_data}"
 
   tags = {
     Name = "${var.app_name} Minecraft-Server"
