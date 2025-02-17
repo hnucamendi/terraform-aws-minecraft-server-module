@@ -24,7 +24,7 @@ resource "aws_instance" "main" {
   })
 
   tags = {
-    Name = "${var.app_name} Minecraft-Server"
+    Name = var.app_name
   }
 }
 
