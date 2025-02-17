@@ -87,6 +87,11 @@ resource "aws_iam_role" "main" {
   })
 }
 
+resource "aws_iam_role_policy_attachment" "minecraft_ssm_policy" {
+  role       = aws_iam_role.main.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+}
+
 ## Outputs ##
 output "instance_id" {
   value       = aws_instance.main.id
